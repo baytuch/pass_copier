@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Pass Copier
+Name[en_US]=Pass Copier
+Exec=passcopier %U
+Categories=Other;
+NoDisplay=true
+MimeType=text/plain
+Terminal=true
+X-KeepTerminal=true

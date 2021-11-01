@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
   QClipboard *clipboard = QGuiApplication::clipboard();
 
   QString pass;
-  QFile file(app.arguments().at(1));
+  QFile file(app.arguments().last().remove(QRegExp("file://")));
   if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
     pass = file.readLine();
     pass = pass.remove(QRegExp("[ |\r|\n]"));

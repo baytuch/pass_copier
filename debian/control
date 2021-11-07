@@ -1,0 +1,13 @@
+Source: passcopier
+Section: misc
+Maintainer: Baytuch <alexander@it-hobby.km.ua>
+Standards-Version: 1.0
+
+Package: passcopier
+Section: misc
+Priority: optional
+Depends: ${shlibs:Depends}
+Architecture: any
+Homepage: https://www.it-hobby.km.ua/
+Description: passcopier util
+ passcopier is a util for hidden copy your pass to clipboard

@@ -1,0 +1,9 @@
+
+BUILD & INSTALL
+  sudo apt-get install build-essential fakeroot dh-make git cmake dpkg-dev
+  sudo apt-get install qtdeclarative5-dev qtbase5-dev qttools5-dev qttools5-dev-tools qttranslations5-l10n
+  sudo apt-get install qttools5-dev
+  git clone https://github.com/baytuch/pass_copier.git -b master
+  cd pass_copier
+  dpkg-buildpackage -rfakeroot -b --no-sign
+  sudo dpkg -i "../$(ls ../ | grep passcopier_ | grep .deb)"

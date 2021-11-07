@@ -1,0 +1,39 @@
+
+name: Build check
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '*'
+  pull_request:
+
+jobs:
+
+  build-ubuntu-18:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        id: build
+        run: |
+          sudo apt-get update
+          sudo apt-get install build-essential fakeroot dh-make git cmake dpkg-dev
+          sudo apt-get install qtdeclarative5-dev qtbase5-dev qttools5-dev qttools5-dev-tools qttranslations5-l10n
+          sudo apt-get install qttools5-dev
+          dpkg-buildpackage -rfakeroot -b --no-sign
+          file_name=$(ls ../ | grep "passcopier_"| grep ".deb")
+          asset_path="../"$file_name
+          asset_name=$file_name
+          echo "::set-output name=artifact_path::${asset_path}"
+          echo "::set-output name=release_name::${asset_name}"
+
+      - name: Upload To GH Artifacts
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: ${{ steps.build.outputs.release_name }}
+          path: ${{ steps.build.outputs.artifact_path }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

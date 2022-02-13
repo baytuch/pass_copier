@@ -24,5 +24,5 @@ if (UNIX)
 endif()
 
 install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME} DESTINATION bin)
-install(FILES passcopier.desktop DESTINATION DESTINATION share/applications)
+install(FILES passcopier.desktop DESTINATION share/applications)
 
